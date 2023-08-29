@@ -66,10 +66,16 @@
 
 :root {
   /* colors */
-  --clr-light: 0 0% 96%;
-  --clr-dark: 245 9% 27%;
-  --clr-primary: 35 100% 55%;
-  --clr-secondary: 193 99% 43%;
+  --clr-neutral-100: 0 0% 100%;
+  --clr-neutral-200: 0 0% 96%;
+  --clr-neutral-300: 0 0% 91%;
+  --clr-neutral-400: 0 0% 51%;
+  --clr-neutral-500: 0 0% 23%;
+  --clr-neutral-600: 0 0% 18%;
+  --clr-neutral-700: 0 0% 12%;
+  --clr-neutral-800: 0 0% 2%;
+  --clr-accent: 274 82% 60%;
+  --clr-error: 0 100% 66%;
 
   /* font-families */
   --ff-mono: 'Inconsolata', monospace;
@@ -86,26 +92,17 @@
 
   /* font-size */
   --fs-sm: 0.875rem; /* 14px */
-  --fs-base: 1rem; /* 16px */
-  --fs-md: 1.125rem; /* 18px */
-  --fs-lg: 1.25rem; /* 20px */
-  --fs-xl: 1.5rem; /* 24px */
-  --fs-2xl: 1.75rem; /* 28px */
-  --fs-3xl: 2rem; /* 32px */
-  --fs-4xl: 3rem; /* 48px */
-  --fs-5xl: 4rem; /* 64px */
-  --fs-6xl: 5rem; /* 80px */
-
-  --fs-heading-1: clamp(2.5rem, calc(1.09rem + 4.35vw), 5rem);
-  --fs-heading-2: clamp(2rem, calc(1rem + 3.33vw), 4rem);
-  --fs-body: var(--fs-base);
+  --fs-base: 1.125rem; /* 18px */
+  --fs-md: 1.25rem; /* 20px */
+  --fs-lg: 1.5rem; /* 24px */
+  --fs-xl: 4rem; /* 64px */
 
   /* border */
   --outline-focus-light: 4px dotted hsl(var(--clr-light));
   --outline-focus-dark: 4px dotted hsl(var(--clr-dark));
 
   /* border radius */
-  --br-base: 0.5rem;
+  --br-base: 1rem;
 
   /* spacing */
   --space-2xs: 0.25rem; /* 4px */
