@@ -1,9 +1,9 @@
-import './App.css';
+import { Navbar } from './layouts';
 
 function App() {
   return (
-    <div>
-      <h1>Dictionary web app</h1>
+    <div className="app">
+      <Navbar />
     </div>
   );
 }
