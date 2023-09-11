@@ -77,6 +77,9 @@
   --clr-accent: 274 82% 60%;
   --clr-error: 0 100% 66%;
 
+  --clr-popover-bg: var(--clr-neutral-100)
+  --clr-popover-shadow: var(--clr-neutral-800) / 0.1;
+
   /* font-families */
   --ff-mono: 'Inconsolata', monospace;
   --ff-sans: 'Inter', sans-serif;
@@ -210,4 +213,38 @@ a:not([class]) {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+/* ----------------- */
+/* Utility classes   */
+/* ----------------- */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ----------------- */
+/* General styles    */
+/* ----------------- */
+
+body {
+  font-family: var(--ff-serif);
+  line-height: var(--lh-base);
+  font-weight: var(--fw-normal);
+  color: hsl(var(--clr-neutral-600));
+  background-color: hsl(var(--clr-neutral-100));
+}
+
+.app {
+  width: min(48.5rem, 100%);
+  margin: 0 auto;
+  padding: var(--space-2xl) var(--space-xl);
 }
