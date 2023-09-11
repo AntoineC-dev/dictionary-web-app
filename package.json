@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@zag-js/react": "^0.17.0",
+    "@zag-js/select": "^0.17.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
