@@ -1,55 +1,63 @@
 import styles from './FontSelectMenu.module.css';
+import useStore, { Fonts } from '../../stores/store';
 
-import * as React from 'react';
-import * as select from '@zag-js/select';
-import { useMachine, normalizeProps, Portal } from '@zag-js/react';
-import arrowDown from '/images/icon-arrow-down.svg';
+import * as Ariakit from '@ariakit/react';
 
-const selectData = [
-  { label: 'Sans Serif', value: 'ff-sans' },
-  { label: 'Serif', value: 'ff-serif' },
-  { label: 'Mono', value: 'ff-mono' },
+interface SelectData {
+  label: string;
+  value: Fonts;
+}
+const selectData: SelectData[] = [
+  { label: 'Sans Serif', value: '--ff-sans' },
+  { label: 'Serif', value: '--ff-serif' },
+  { label: 'Mono', value: '--ff-mono' },
 ];
 
-function FontSelectMenu() {
-  const [state, send] = useMachine(
-    select.machine({
-      id: React.useId(),
-      selectedOption: selectData[0],
-      onChange: (option) => {
-        console.log(option?.value);
-        // Update app font-family
-      },
-    })
-  );
+function renderSelectLabel(val: Fonts) {
+  for (let i = 0; i < selectData.length; i++) {
+    const data = selectData[i];
+    if (data.value === val) {
+      return data.label;
+    }
+  }
+}
 
-  const api = select.connect(state, send, normalizeProps);
+function FontSelectMenu() {
+  const globalFont = useStore((state) => state.globalFont);
+  const setGlobalFont = useStore((state) => state.setGlobalFont);
+
+  const select = Ariakit.useSelectStore({
+    defaultValue: globalFont,
+    animated: true,
+    placement: 'bottom-end',
+    setValue: (value) => setGlobalFont(value as Fonts),
+  });
+  const value = select.useState('value') as Fonts;
+  const mounted = select.useState('mounted');
 
   return (
     <>
-      <div>
-        <label {...api.labelProps} className="sr-only">
-          Select a font family
-        </label>
-        <button {...api.triggerProps} className={styles.trigger}>
-          <span className={styles.placeholder} style={{ fontFamily: `var(--${api.selectedOption?.value})` }}>
-            {api.selectedOption?.label ?? 'Select option'}
-          </span>
-          <img className={styles.arrow} src={arrowDown} alt="" aria-hidden="true" />
-        </button>
-      </div>
+      <Ariakit.SelectLabel store={select} className="sr-only">
+        Choose a font-family
+      </Ariakit.SelectLabel>
+      <Ariakit.Select store={select} className={styles.btn} style={{ fontFamily: `var(${value})` }}>
+        {renderSelectLabel(value)}
+        <Ariakit.SelectArrow />
+      </Ariakit.Select>
 
-      <Portal>
-        <div {...api.positionerProps} className={styles.popup}>
-          <ul {...api.contentProps} className={styles.options}>
-            {selectData.map(({ label, value }) => (
-              <li key={value} {...api.getOptionProps({ label, value })} className={styles.item}>
-                <span style={{ fontFamily: `var(--${value})` }}>{label}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </Portal>
+      {mounted && (
+        <Ariakit.SelectPopover store={select} portal gutter={4} className={styles.popover}>
+          {selectData.map((item, i) => (
+            <Ariakit.SelectItem
+              key={i}
+              className={styles.item}
+              value={item.value}
+              style={{ fontFamily: `var(${item.value})` }}>
+              {item.label}
+            </Ariakit.SelectItem>
+          ))}
+        </Ariakit.SelectPopover>
+      )}
     </>
   );
 }

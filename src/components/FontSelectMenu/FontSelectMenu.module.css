@@ -1,4 +1,4 @@
-.trigger {
+.btn {
   cursor: pointer;
   display: flex;
   justify-content: space-between;
@@ -8,27 +8,35 @@
   font-weight: var(--fw-bold);
 }
 
-.popup {
+.btn > span {
+  color: hsl(var(--clr-accent));
+}
+
+.popover {
+  opacity: 0;
+  /* outline: 1px solid red; */
+  transition: opacity 150ms linear;
+  padding: var(--space-md);
   border-radius: var(--br-base);
   background-color: hsl(var(--clr-popover-bg));
   box-shadow: 0px 5px 30px 0px hsl(var(--clr-popover-shadow));
+  min-width: 10rem;
 }
 
-.options {
-  padding: var(--space-md);
-  border-radius: var(--br-base);
+.popover[data-enter] {
+  opacity: 1;
 }
 
-.options > * + * {
+.popover > * + * {
   margin-top: var(--space-base);
 }
 
 .item {
   font-weight: var(--fw-bold);
+  line-height: 1;
   cursor: pointer;
-  margin-right: var(--space-md);
 }
 
-.item[data-highlighted] {
+.item[data-active-item] {
   color: hsl(var(--clr-accent));
 }
