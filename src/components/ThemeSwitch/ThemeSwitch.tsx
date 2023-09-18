@@ -1,12 +1,13 @@
 import * as React from 'react';
+
 import styles from './ThemeSwitch.module.css';
 import useLocalStorage from '../../hooks/useLocalStorage';
 
 type Themes = 'light' | 'dark';
 
 function ThemeSwitch() {
-  const defaultDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  const [theme, setTheme] = useLocalStorage<Themes>('theme', defaultDark ? 'dark' : 'light');
+  const isDefaultDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const [theme, setTheme] = useLocalStorage<Themes>('theme', isDefaultDark ? 'dark' : 'light');
   const toggleTheme = () => setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
 
   React.useEffect(() => {
