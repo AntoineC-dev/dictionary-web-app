@@ -77,9 +77,6 @@
   --clr-accent: 274 82% 60%;
   --clr-error: 0 100% 66%;
 
-  --clr-popover-bg: var(--clr-neutral-100);
-  --clr-popover-shadow: var(--clr-neutral-800) / 0.1;
-
   /* font-families */
   --ff-mono: 'Inconsolata', monospace;
   --ff-sans: 'Inter', sans-serif;
@@ -117,6 +114,44 @@
   --space-xl: 2.5rem; /* 40px */
   --space-2xl: 4rem; /* 64px */
   --space-3xl: 5rem; /* 80px */
+}
+
+/* ----------------- */
+/* Color Theme       */
+/* ----------------- */
+
+:root[color-scheme='light'] {
+  --clr-app-bg: var(--clr-neutral-100);
+  --clr-app-txt: var(--clr-neutral-600);
+
+  --clr-popover-bg: var(--clr-neutral-100);
+  --clr-popover-shadow: var(--clr-neutral-800) / 0.1;
+
+  --clr-theme-icon: var(--clr-neutral-400);
+  color-scheme: light;
+}
+
+:root[color-scheme='dark'] {
+  --clr-app-bg: var(--clr-neutral-800);
+  --clr-app-txt: var(--clr-neutral-100);
+
+  --clr-popover-bg: var(--clr-neutral-700);
+  --clr-popover-shadow: var(--clr-accent);
+
+  --clr-theme-icon: var(--clr-accent);
+  color-scheme: dark;
+}
+
+:root[font-family='sans'] {
+  --ff-body: var(--ff-sans);
+}
+
+:root[font-family='serif'] {
+  --ff-body: var(--ff-serif);
+}
+
+:root[font-family='mono'] {
+  --ff-body: var(--ff-mono);
 }
 
 /* ----------------- */
@@ -236,11 +271,11 @@ a:not([class]) {
 /* ----------------- */
 
 body {
-  font-family: var(--ff-serif);
+  font-family: var(--ff-body);
   line-height: var(--lh-base);
   font-weight: var(--fw-normal);
-  color: hsl(var(--clr-neutral-600));
-  background-color: hsl(var(--clr-neutral-100));
+  color: hsl(var(--clr-app-txt));
+  background-color: hsl(var(--clr-app-bg));
 }
 
 .app {
