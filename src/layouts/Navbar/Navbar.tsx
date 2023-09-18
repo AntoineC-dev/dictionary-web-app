@@ -1,4 +1,4 @@
-import { FontSelectMenu } from '../../components/intex';
+import { FontSelectMenu, ThemeSwitch } from '../../components/intex';
 import styles from './Navbar.module.css';
 import logo from '/images/logo.svg';
 
@@ -8,10 +8,10 @@ function Navbar() {
       <div className={styles.logoWrapper}>
         <img src={logo} alt="Dictionnary web app logo" />
       </div>
-      <div>
+      <div className={styles.actions}>
         <FontSelectMenu />
         {/* Separator */}
-        {/* theme switch */}
+        <ThemeSwitch />
       </div>
     </div>
   );
