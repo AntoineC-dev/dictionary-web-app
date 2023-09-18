@@ -1,0 +1,10 @@
+.btn {
+  color: hsl(var(--clr-theme-icon));
+  border-radius: var(--br-base);
+  padding: var(--space-xs);
+  cursor: pointer;
+}
+
+.icon {
+  width: 1.5rem;
+}
