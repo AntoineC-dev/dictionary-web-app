@@ -1,16 +1,20 @@
-import styles from './FontSelectMenu.module.css';
-import useStore, { Fonts } from '../../stores/store';
-
+import * as React from 'react';
 import * as Ariakit from '@ariakit/react';
+
+import styles from './FontSelectMenu.module.css';
+import useLocalStorage from '../../hooks/useLocalStorage';
+
+type Fonts = 'sans' | 'serif' | 'mono';
 
 interface SelectData {
   label: string;
   value: Fonts;
 }
+
 const selectData: SelectData[] = [
-  { label: 'Sans Serif', value: '--ff-sans' },
-  { label: 'Serif', value: '--ff-serif' },
-  { label: 'Mono', value: '--ff-mono' },
+  { label: 'Sans Serif', value: 'sans' },
+  { label: 'Serif', value: 'serif' },
+  { label: 'Mono', value: 'mono' },
 ];
 
 function renderSelectLabel(val: Fonts) {
@@ -23,25 +27,28 @@ function renderSelectLabel(val: Fonts) {
 }
 
 function FontSelectMenu() {
-  const globalFont = useStore((state) => state.globalFont);
-  const setGlobalFont = useStore((state) => state.setGlobalFont);
+  const [font, setFont] = useLocalStorage<Fonts>('font', 'sans');
 
   const select = Ariakit.useSelectStore({
-    defaultValue: globalFont,
+    defaultValue: font,
     animated: true,
     placement: 'bottom-end',
-    setValue: (value) => setGlobalFont(value as Fonts),
+    setValue: (value) => setFont(value as Fonts),
   });
-  const value = select.useState('value') as Fonts;
+
   const mounted = select.useState('mounted');
+
+  React.useEffect(() => {
+    document.documentElement.setAttribute('font-family', font);
+  }, [font]);
 
   return (
     <>
       <Ariakit.SelectLabel store={select} className="sr-only">
         Choose a font-family
       </Ariakit.SelectLabel>
-      <Ariakit.Select store={select} className={styles.btn} style={{ fontFamily: `var(${value})` }}>
-        {renderSelectLabel(value)}
+      <Ariakit.Select store={select} className={styles.btn}>
+        {renderSelectLabel(font)}
         <Ariakit.SelectArrow />
       </Ariakit.Select>
 
@@ -52,7 +59,7 @@ function FontSelectMenu() {
               key={i}
               className={styles.item}
               value={item.value}
-              style={{ fontFamily: `var(${item.value})` }}>
+              style={{ fontFamily: `var(--ff-${item.value})` }}>
               {item.label}
             </Ariakit.SelectItem>
           ))}
