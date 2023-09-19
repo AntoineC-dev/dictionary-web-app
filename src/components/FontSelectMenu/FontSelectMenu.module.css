@@ -6,6 +6,11 @@
   gap: var(--space-base);
   padding: var(--space-xs);
   font-weight: var(--fw-bold);
+  transition: var(--hover-transition);
+}
+
+.btn:hover {
+  background-color: hsl(var(--hover-bg));
 }
 
 .btn > span {
@@ -14,7 +19,6 @@
 
 .popover {
   opacity: 0;
-  /* outline: 1px solid red; */
   transition: opacity 150ms linear;
   padding: var(--space-md);
   border-radius: var(--br-base);

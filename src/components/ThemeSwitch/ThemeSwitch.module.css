@@ -1,9 +1,13 @@
 .btn {
   color: hsl(var(--clr-theme-icon));
-  border-radius: var(--br-base);
+  transition: background-color 150ms linear;
   padding: var(--space-xs);
   margin-inline: calc(-1 * var(--space-xs));
   cursor: pointer;
+}
+
+.btn:hover {
+  background-color: hsl(var(--hover-bg));
 }
 
 .icon {
