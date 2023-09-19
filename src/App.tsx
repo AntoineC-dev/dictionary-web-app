@@ -1,9 +1,11 @@
+import { SearchField } from './components';
 import { Navbar } from './layouts';
 
 function App() {
   return (
     <div className="app">
       <Navbar />
+      <SearchField />
       <p style={{ marginTop: '80px', fontSize: '20px' }}>
         Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sequi aperiam exercitationem aliquid sit dignissimos
         accusantium ab similique ut quam officia animi a eligendi laborum, corrupti reiciendis minus saepe suscipit
