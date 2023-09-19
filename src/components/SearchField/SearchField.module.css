@@ -1,0 +1,57 @@
+.wrapper {
+  position: relative;
+  margin-block: var(--space-md);
+  --input-height: 3rem;
+  --input-spacing: var(--space-base);
+  --submit-spacing: var(--space-2xs);
+}
+
+/* .field {
+  display: flex;
+  border-radius: var(--br-base);
+  background-color: hsl(var(--input-bg));
+} */
+
+.input {
+  width: 100%;
+  height: var(--input-height);
+  background-color: hsl(var(--input-bg));
+  padding-inline: var(--input-spacing) calc((var(--input-spacing) * 2) + 18px);
+  border-radius: var(--br-base);
+  text-transform: capitalize;
+}
+
+.input[aria-invalid='true'] {
+  outline: 4px dotted hsl(var(--clr-error));
+}
+
+.submit {
+  cursor: pointer;
+  position: absolute;
+  padding: var(--submit-spacing);
+  margin-inline: calc(-1 * var(--submit-spacing));
+  right: var(--input-spacing);
+  top: 50%;
+  transform: translateY(-50%);
+  transition: var(--hover-transition);
+}
+
+.submit:hover {
+  background-color: hsl(var(--hover-bg));
+}
+
+.error {
+  position: absolute;
+  top: calc(100% + var(--space-base));
+  left: var(--input-spacing);
+  color: hsl(var(--clr-error));
+}
+
+@media (min-width: 768px) {
+  .wrapper {
+    margin-block: var(--space-xl);
+    --input-height: 4rem;
+    --input-spacing: var(--space-md);
+    --submit-spacing: var(--space-xs);
+  }
+}
