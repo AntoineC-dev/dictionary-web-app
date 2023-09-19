@@ -11,4 +11,17 @@
 .actions {
   display: flex;
   align-items: center;
+  gap: var(--space-base);
+}
+
+.separator {
+  width: 0.0625rem;
+  height: 2rem;
+  background-color: hsl(var(--clr-neutral-300));
+}
+
+@media (min-width: 768px) {
+  .actions {
+    gap: var(--space-md);
+  }
 }

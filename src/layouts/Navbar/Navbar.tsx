@@ -1,4 +1,4 @@
-import { FontSelectMenu, ThemeSwitch } from '../../components/intex';
+import { FontSelectMenu, ThemeSwitch } from '../../components';
 import styles from './Navbar.module.css';
 import logo from '/images/logo.svg';
 
@@ -10,7 +10,7 @@ function Navbar() {
       </div>
       <div className={styles.actions}>
         <FontSelectMenu />
-        {/* Separator */}
+        <div className={styles.separator} role="separator" aria-orientation="vertical" />
         <ThemeSwitch />
       </div>
     </div>
