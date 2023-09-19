@@ -2,6 +2,7 @@
   color: hsl(var(--clr-theme-icon));
   border-radius: var(--br-base);
   padding: var(--space-xs);
+  margin-inline: calc(-1 * var(--space-xs));
   cursor: pointer;
 }
 
