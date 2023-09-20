@@ -1,0 +1,48 @@
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  font-size: var(--fs-2xl);
+  font-weight: var(--fw-bold);
+  line-height: var(--lh-sm);
+  margin-bottom: var(--space-xs);
+  text-transform: capitalize;
+}
+
+.phonetic {
+  font-size: var(--fs-md);
+  color: hsl(var(--clr-accent));
+}
+
+.btn {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  opacity: 1;
+  transition: opacity 150ms linear;
+}
+
+.btn:hover {
+  opacity: 0.9;
+}
+
+@media (min-width: 768px) {
+  .title {
+    font-size: var(--fs-3xl);
+  }
+
+  .phonetic {
+    font-size: var(--fs-xl);
+  }
+
+  .btn {
+    width: 4.6875rem;
+    height: 4.6875rem;
+  }
+}
