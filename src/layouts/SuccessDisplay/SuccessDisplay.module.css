@@ -1,0 +1,36 @@
+.separator {
+  height: 0.0625rem;
+  background-color: hsl(var(--clr-neutral-500));
+  margin-bottom: var(--space-md);
+}
+
+.sourceWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  font-size: var(--fs-xs);
+}
+
+.sourceLabel {
+  color: hsl(var(--clr-neutral-400));
+  line-height: 1;
+}
+
+.sourceUrl {
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  transition: color 150ms linear;
+}
+
+.sourceUrl:hover {
+  color: hsl(var(--clr-accent));
+}
+
+@media (min-width: 768px) {
+  .sourceWrapper {
+    flex-direction: row;
+    gap: var(--space-md);
+  }
+}
