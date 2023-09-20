@@ -1,5 +1,5 @@
 import styles from './Meaning.module.css';
-import { Meaning as MeaningProps } from '../../api/types';
+import { Meaning as MeaningProps } from '../../types';
 
 function renderBottomElems(title: string, elems: string[]) {
   return (

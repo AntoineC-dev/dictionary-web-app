@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styles from './PlayButton.module.css';
-import { APIData } from '../../api/types';
+import { APIData } from '../../types';
 
 type PlayButtonProps = Pick<APIData, 'word' | 'phonetic'>;
 

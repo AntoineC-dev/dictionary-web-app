@@ -2,24 +2,27 @@ import * as Ariakit from '@ariakit/react';
 
 import styles from './SearchField.module.css';
 import { getDictionaryApiData } from '../../api/api';
-import useStore from '../../stores/store';
+import { Store } from '../../types';
 
-function SearchField() {
-  const setStore = useStore((state) => state.setStore);
-  const form = Ariakit.useFormStore({
-    defaultValues: { word: '' },
-  });
+interface SearchFieldProps {
+  setStore: React.Dispatch<React.SetStateAction<Store>>;
+}
+
+function SearchField(props: SearchFieldProps) {
+  const form = Ariakit.useFormStore({ defaultValues: { word: '' } });
 
   form.useSubmit(async (state) => {
-    //TODO call the api
     const word = state.values.word;
-    // alert(word);
     const res = await getDictionaryApiData(word);
-    setStore(res);
+    props.setStore(res);
   });
 
   return (
-    <Ariakit.Form store={form} aria-label="Search a word in the dictionary" className={styles.wrapper}>
+    <Ariakit.Form
+      store={form}
+      aria-label="Search a word in the dictionary"
+      className={styles.wrapper}
+      validateOnBlur={false}>
       <Ariakit.FormLabel name={form.names.word} className="sr-only">
         Search for any word
       </Ariakit.FormLabel>

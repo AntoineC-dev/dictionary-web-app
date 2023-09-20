@@ -1,5 +1,5 @@
 import styles from './SuccessDisplay.module.css';
-import { APIData } from '../../api/types';
+import { APIData } from '../../types';
 import { Meaning, PlayButton } from '../../components';
 
 function SuccessDisplay(props: APIData) {

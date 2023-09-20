@@ -1,4 +1,4 @@
-import { APIData, APIResponse, Definition } from './types';
+import { APIData, APIResponse, Definition } from '../types';
 
 const normalizePhonetics = (data: APIResponse['phonetics']): APIData['phonetic'] => {
   for (let i = 0; i < data.length; i++) {

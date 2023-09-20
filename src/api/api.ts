@@ -1,6 +1,6 @@
+import { Store } from '../types';
 import { normalizeApiData } from './helpers';
-import { Store } from '../stores/store';
-import { apiResponse } from './types';
+import { apiResponse } from './validators';
 
 export const API_URL = 'https://api.dictionaryapi.dev/api/v2/entries/en';
 

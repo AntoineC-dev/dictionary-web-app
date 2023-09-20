@@ -6,8 +6,6 @@ export const apiError = z.object({
   resolution: z.string(),
 });
 
-export type APIError = z.infer<typeof apiError>;
-
 export const apiResponse = z.object({
   word: z.string(),
   phonetic: z.string(),
@@ -37,27 +35,3 @@ export const apiResponse = z.object({
   license: z.object({ name: z.string(), url: z.string() }),
   sourceUrls: z.string().array(),
 });
-
-export type APIResponse = z.infer<typeof apiResponse>;
-
-export interface Definition {
-  definition: string;
-  example?: string;
-}
-
-export interface Meaning {
-  partOfSpeech: string;
-  definitions: Definition[];
-  synonyms: string[];
-  antonyms: string[];
-}
-
-export interface APIData {
-  word: string;
-  phonetic: {
-    text: string;
-    audio: string;
-  };
-  meanings: Meaning[];
-  sourceUrl: string;
-}

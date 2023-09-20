@@ -1,5 +1,5 @@
-import { APIError } from '../../api/types';
 import styles from './ErrorDisplay.module.css';
+import { APIError } from '../../types';
 
 function ErrorDisplay({ message, resolution, title }: APIError) {
   return (
