@@ -5,6 +5,7 @@
   align-items: center;
   gap: var(--space-base);
   padding: var(--space-xs);
+  font-size: var(--fs-xs);
   font-weight: var(--fw-bold);
   transition: var(--hover-transition);
 }
@@ -38,9 +39,17 @@
 .item {
   font-weight: var(--fw-bold);
   line-height: 1;
+  font-size: var(--fs-xs);
   cursor: pointer;
 }
 
 .item[data-active-item] {
   color: hsl(var(--clr-accent));
+}
+
+@media (min-width: 768px) {
+  .btn,
+  .item {
+    font-size: var(--fs-md);
+  }
 }

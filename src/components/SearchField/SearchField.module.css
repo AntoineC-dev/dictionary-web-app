@@ -1,18 +1,13 @@
 .wrapper {
   position: relative;
-  margin-block: var(--space-md);
+  margin-block: var(--space-md) var(--space-lg);
   --input-height: 3rem;
   --input-spacing: var(--space-base);
   --submit-spacing: var(--space-2xs);
 }
 
-/* .field {
-  display: flex;
-  border-radius: var(--br-base);
-  background-color: hsl(var(--input-bg));
-} */
-
 .input {
+  font-size: var(--fs-base);
   width: 100%;
   height: var(--input-height);
   background-color: hsl(var(--input-bg));
@@ -42,9 +37,10 @@
 
 .error {
   position: absolute;
-  top: calc(100% + var(--space-base));
+  top: calc(100% + var(--space-xs));
   left: var(--input-spacing);
   color: hsl(var(--clr-error));
+  font-size: var(--fs-xs);
 }
 
 @media (min-width: 768px) {
@@ -53,5 +49,8 @@
     --input-height: 4rem;
     --input-spacing: var(--space-md);
     --submit-spacing: var(--space-xs);
+  }
+  .input {
+    font-size: var(--fs-lg);
   }
 }

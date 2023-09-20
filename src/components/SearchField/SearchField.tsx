@@ -1,13 +1,21 @@
 import * as Ariakit from '@ariakit/react';
 
 import styles from './SearchField.module.css';
+import { getDictionaryApiData } from '../../api/api';
+import useStore from '../../stores/store';
 
 function SearchField() {
-  const form = Ariakit.useFormStore({ defaultValues: { word: '' } });
+  const setStore = useStore((state) => state.setStore);
+  const form = Ariakit.useFormStore({
+    defaultValues: { word: '' },
+  });
 
   form.useSubmit(async (state) => {
     //TODO call the api
-    alert(JSON.stringify(state.values.word));
+    const word = state.values.word;
+    // alert(word);
+    const res = await getDictionaryApiData(word);
+    setStore(res);
   });
 
   return (
