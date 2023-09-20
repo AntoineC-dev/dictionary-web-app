@@ -8,11 +8,11 @@ export const apiError = z.object({
 
 export const apiResponse = z.object({
   word: z.string(),
-  phonetic: z.string(),
+  phonetic: z.string().optional(),
   phonetics: z
     .object({
-      text: z.string(),
-      audio: z.string(),
+      text: z.string().optional(),
+      audio: z.string().optional(),
       sourceUrl: z.string().optional(),
       license: z.object({ name: z.string(), url: z.string() }).optional(),
     })

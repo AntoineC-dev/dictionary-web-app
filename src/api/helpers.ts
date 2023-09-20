@@ -1,13 +1,21 @@
 import { APIData, APIResponse, Definition } from '../types';
 
 const normalizePhonetics = (data: APIResponse['phonetics']): APIData['phonetic'] => {
+  let audio = '';
+  let text = '';
   for (let i = 0; i < data.length; i++) {
     const curr = data[i];
     if (!!curr.text && !!curr.audio) {
       return { text: curr.text, audio: curr.audio };
     }
+    if (curr.text && !!curr.text) {
+      text = curr.text;
+    }
+    if (curr.audio && !!curr.audio) {
+      audio = curr.audio;
+    }
   }
-  return { text: '', audio: '' };
+  return { text, audio };
 };
 
 const normalizeMeanings = (data: APIResponse['meanings']): APIData['meanings'] => {

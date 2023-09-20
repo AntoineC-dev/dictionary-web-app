@@ -4,11 +4,14 @@
   align-items: center;
 }
 
+.inner > * + * {
+  margin-top: var(--space-xs);
+}
+
 .title {
   font-size: var(--fs-2xl);
   font-weight: var(--fw-bold);
   line-height: var(--lh-sm);
-  margin-bottom: var(--space-xs);
   text-transform: capitalize;
 }
 
@@ -27,8 +30,12 @@
   opacity: 1;
   transition: opacity 150ms linear;
 }
+.btn[aria-disabled='true'] {
+  opacity: 0.25;
+  cursor: not-allowed;
+}
 
-.btn:hover {
+.btn[aria-disabled='false']:hover {
   opacity: 0.9;
 }
 
