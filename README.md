@@ -52,8 +52,8 @@ Bonus:
 
 ### Links
 
-- Solution URL: [https://www.frontendmentor.io/solutions/password-generator-app-solidjs-typescript-postcss-2eOe7gBlbM](https://www.frontendmentor.io/solutions/password-generator-app-solidjs-typescript-postcss-2eOe7gBlbM)
-- Live Site URL: [https://password-generator-app-acdev.vercel.app/](https://password-generator-app-acdev.vercel.app/)
+- [Solution URL](https://www.frontendmentor.io/solutions/dictionary-web-app-react-typescript-AM_r8OGGxI)
+- [Live Site URL](https://dictionary-web-app-acdev.vercel.app/)
 
 ## My process
 
@@ -62,120 +62,49 @@ Bonus:
 - Semantic HTML5 markup
 - CSS custom properties
 - Flexbox
-- CSS Grid
 - Mobile-first workflow
 - [Typescript](https://www.typescriptlang.org/)
-- [SolidJs](https://www.solidjs.com/)
-- [Postcss](https://postcss.org/)
+- [React](https://react.dev/)
+- [AriaKit](https://ariakit.org/)
 
 ### What I learned
 
-#### Solid JS
+#### AriaKit
 
-As a second project with this stack I start to really feel good with the framework. It has a really nice DX and clear documentation.
+Really awesome unstyled component librairy to simplify accessibility
 
-#### Accessibility - Making Disabled Buttons More Inclusive
+#### Custom Hooks
 
-I tried to not use the disabled HTML attribute but work with the aria-disabled instead. It means that I am required to check for the validity of the inputs in the JavaScript because the buttons are actually clickable even with the "disable" style.
-
-I added a tooltip to explain why the button is "disabled" for a better UX.
-
-For users using keyboard navigation & screen readers it is a big + ! Because the button is still focusable and they know why the action fails.
-
-#### Customize range input
-
-It was really hard to create the custom range input from the design and make it compatible in both Chromium and Firefox.
-
-I tried going with a CSS-only approch but only firefox gives you the possibility to style the **progress track** with `::-moz-range-progress` so i used a dynamic linear gradient with a bit of JavaScript.
-
-```jsx
-const CustomSlider: Component<CustomSliderProps> = (props: CustomSliderProps) => {
-  const gradientStop = createMemo(() => Math.floor((+props.value! / +props.max!) * 100));
-  return <input type="range" class={styles.input} style={{ '--gradient-stop': `${gradientStop()}%` }} {...props} />;
-};
-```
-
-```css
-.input::-webkit-slider-runnable-track {
-  /* ... properties */
-  background-image: linear-gradient(
-    to right,
-    hsl(var(--clr-accent)) 0%,
-    hsl(var(--clr-accent)) var(--gradient-stop),
-    hsl(var(--clr-gray-900)) var(--gradient-stop),
-    hsl(var(--clr-gray-900)) 100%
-  );
-}
-```
-
-#### Generate a strict password with predefined rules
-
-I added a little bonus to the project. Any generated password must contain at least one character for each rule.
+It was always a very enjoyable part of React since hooks were introduced.
+This time i used it to handle the localstorage logic of the app.
+Here is the code:
 
 ```ts
-const generateRandomIndexes = (length: PasswordOptions['length'], pool: string) => {
-  let indexes: number[] = [];
-  while (indexes.length < length) {
-    const index = Math.floor(Math.random() * pool.length);
-    if (indexes.indexOf(index) === -1) indexes.push(index);
-  }
-  return indexes;
-};
+const LOCAL_PREFIX = 'dictionary-web-app';
 
-const generateStrictPassword = (options: PasswordOptions, pool: string): string => {
-  // Generate unique indexes
-  const indexes = generateRandomIndexes(options.length, pool);
-
-  // Generate password
-  let password = '';
-  for (let i = 0; i < indexes.length; i++) {
-    password += pool[indexes[i]];
-  }
-
-  // Check if password follows all rules
-  const isStrict = STRICT_RULES.every((rule) => {
-    if (!options.rules[rule.name]) return true;
-    return rule.regexp.test(password);
+const useLocalStorage = <T>(key: string, initialValue: T) => {
+  const localKey = `${LOCAL_PREFIX}.${key}`;
+  const [value, setValue] = React.useState<T>(() => {
+    try {
+      const localValue = window.localStorage.getItem(localKey);
+      return localValue ? JSON.parse(localValue) : initialValue;
+    } catch (err) {
+      console.log(err);
+      return initialValue;
+    }
   });
 
-  // If not strict calls itself recursively
-  if (!isStrict) return generateStrictPassword(options, pool);
+  React.useEffect(() => {
+    window.localStorage.setItem(localKey, JSON.stringify(value));
+  }, [localKey, value]);
 
-  return password;
-};
-
-export const generatePassword = (options: PasswordOptions) => {
-  let pool = '';
-  if (options.rules.lowercase) pool += LOWERCASE_CHARS;
-  if (options.rules.uppercase) pool += UPPERCASE_CHARS;
-  if (options.rules.numbers) pool += NUMBERS;
-  if (options.rules.symbols) pool += SYMBOLS;
-
-  // Generate password
-  const password = generateStrictPassword(options, pool);
-  return password;
-};
-```
-
-The way I generate unique indexes does not scale very well above 32 chars but that is enough for a password generator. If you need to go further you might want to use the JavaScript `Set` to check if the generated index is unique in the current Set.
-
-#### Copy to clipboard
-
-I used the new navigator.clipboard API.
-
-```ts
-export const copyToClipboard = async (str: string) => {
-  if (!(navigator && navigator.clipboard && navigator.clipboard.writeText))
-    return Promise.reject('The Clipboard API is not available.');
-  return navigator.clipboard.writeText(str);
+  return [value, setValue] as const;
 };
 ```
 
 ### Useful resources
 
-- [Solidjs Documentation](https://www.solidjs.com/docs/latest/api) - Une bibliothèque JavaScript déclarative, efficace et flexible pour la création d'interfaces utilisateur.
-- [Postcss Preset Env](https://preset-env.cssdb.org/) - Start using modern CSS today.
-- [Cross-Browser Range Input](https://css-tricks.com/styling-cross-browser-compatible-range-inputs-css/) - Styling Cross-Browser Compatible Range Inputs with CSS
+- [AriaKit Components](https://ariakit.org/components) - Build accessible web apps with React.
 
 ## Author
 
