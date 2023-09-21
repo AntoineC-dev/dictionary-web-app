@@ -32,7 +32,7 @@ function SearchField(props: SearchFieldProps) {
         className={styles.input}
         required
       />
-      <Ariakit.FormSubmit className={styles.submit}>
+      <Ariakit.FormSubmit className={styles.submit} aria-label="Search the API">
         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
           <path
             fill="none"

@@ -9,7 +9,8 @@ function App() {
   const [store, setStore] = React.useState<Store>({ data: null, error: null });
 
   return (
-    <div className={styles.container}>
+    <main className={styles.container}>
+      <h1 className="sr-only">Dictionary Web App</h1>
       <Navbar />
       <SearchField setStore={setStore} />
       {store.data && (
@@ -20,7 +21,7 @@ function App() {
         </div>
       )}
       {store.error && <ErrorDisplay {...store.error} />}
-    </div>
+    </main>
   );
 }
 
