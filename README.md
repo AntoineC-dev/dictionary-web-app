@@ -71,7 +71,7 @@ Bonus:
 
 #### AriaKit
 
-Really awesome unstyled component librairy to simplify accessibility
+Really awesome unstyled component library to simplify accessibility
 
 #### Custom Hooks
 
