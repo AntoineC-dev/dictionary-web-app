@@ -27,6 +27,6 @@ export interface APIData {
 }
 
 export interface Store {
-  data: APIData | null;
+  data: APIData[] | null;
   error: APIError | null;
 }

@@ -37,13 +37,15 @@ const normalizeMeanings = (data: APIResponse['meanings']): APIData['meanings'] =
   return meanings;
 };
 
-export const normalizeApiData = (response: APIResponse[]): APIData => {
-  const res = response[0];
+export const normalizeApiData = (response: APIResponse[]): APIData[] => {
+  const data = response.map((res) => {
+    const word = res.word;
+    const phonetic = normalizePhonetics(res.phonetics);
+    const meanings = normalizeMeanings(res.meanings);
+    const sourceUrl = res.sourceUrls[0];
 
-  const word = res.word;
-  const phonetic = normalizePhonetics(res.phonetics);
-  const meanings = normalizeMeanings(res.meanings);
-  const sourceUrl = res.sourceUrls[0];
-
-  return { word, phonetic, meanings, sourceUrl };
+    return { word, phonetic, meanings, sourceUrl };
+  });
+  console.log(data);
+  return data;
 };
