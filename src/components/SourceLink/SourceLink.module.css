@@ -1,0 +1,11 @@
+.url {
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  transition: color 150ms linear;
+}
+
+.url:hover {
+  color: hsl(var(--clr-accent));
+}

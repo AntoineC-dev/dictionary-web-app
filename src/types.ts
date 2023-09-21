@@ -23,7 +23,7 @@ export interface APIData {
     audio: string;
   };
   meanings: Meaning[];
-  sourceUrl: string;
+  sourceUrls: string[];
 }
 
 export interface Store {

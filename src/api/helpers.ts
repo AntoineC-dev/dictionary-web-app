@@ -42,10 +42,9 @@ export const normalizeApiData = (response: APIResponse[]): APIData[] => {
     const word = res.word;
     const phonetic = normalizePhonetics(res.phonetics);
     const meanings = normalizeMeanings(res.meanings);
-    const sourceUrl = res.sourceUrls[0];
+    const sourceUrls = res.sourceUrls;
 
-    return { word, phonetic, meanings, sourceUrl };
+    return { word, phonetic, meanings, sourceUrls };
   });
-  console.log(data);
   return data;
 };
